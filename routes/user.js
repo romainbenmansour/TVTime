@@ -3,7 +3,8 @@ var Router = require('express').Router(),
     randomstring = require('randomstring').generate;
 
 var UserModel = require('../models/user'),
-    config = require('../config');
+    config = require('../config'),
+    needAuth = require('../helper/needAuth');
 
 // route for login with facebook, here's the step
 // 1 - check if request is acceptable with POST params
@@ -34,6 +35,10 @@ Router.post('/login/facebook', function(req, res, next) {
     } else {
         return (res.errorApi(400, 'You need to send profile_id and access_token as POST params'));
     }
+});
+
+Router.get('/logout', needAuth, function(req, res) {
+    res.json({message: 'I am logout'})
 });
 
 // get user document

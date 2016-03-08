@@ -37,8 +37,23 @@ Router.post('/login/facebook', function(req, res, next) {
     }
 });
 
+// route for logout
+// 1 - delete token with mongo request
+// 2 - send ok
 Router.get('/logout', needAuth, function(req, res) {
-    res.json({message: 'I am logout'})
+    req.auth.user.update({
+        $pull: {
+            auth_tokens: {
+                value: req.auth.token
+            }
+        }
+    }, function(err) {
+        if (err)
+            return (res.errorApi(500, 'Database error'));
+        res.json({
+            message: 'ok'
+        });
+    })
 });
 
 // get user document

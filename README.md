@@ -1,3 +1,15 @@
-# TVTime
+# cans-counter
+API for benman application
 
-Api written in go
+## routes
+
+#### POST /login/{facebook/google}
+Register or log the user with facebook or google
+
+data =  
+```json
+{
+    "id": 9011234712,
+    "token": "randomtextgenerator"
+}
+```

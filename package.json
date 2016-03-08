@@ -1,0 +1,30 @@
+{
+  "name": "tvtime",
+  "version": "1.0.0",
+  "description": "api for the famous tvtime application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romainbenmansour/TVTime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romainbenmansour/TVTime/issues"
+  },
+  "homepage": "https://github.com/romainbenmansour/TVTime#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "facebook-node": "0.0.3",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.6",
+    "lodash": "^4.6.1",
+    "mongoose": "^4.4.6",
+    "morgan": "^1.7.0",
+    "randomstring": "^1.1.4"
+  }
+}

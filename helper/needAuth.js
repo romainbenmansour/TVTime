@@ -7,6 +7,8 @@ var UserModel = require('../models/user');
 module.exports = function(req, res, next) {
     var credentials = auth(req);
 
+    if (!credentials)
+        return (res.errorApi(401, 'Need to auth'));
     if (!mongoose.Types.ObjectId.isValid(credentials.name))
         return (res.errorApi(401, 'Need to auth'));
     UserModel.findOne({

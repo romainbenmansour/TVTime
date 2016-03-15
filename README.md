@@ -1,4 +1,4 @@
-# cans-counter
+
 API for benman application
 
 ## routes

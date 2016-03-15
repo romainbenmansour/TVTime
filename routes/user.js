@@ -13,7 +13,7 @@ var UserModel = require('../models/user'),
 // 4 - check if user has an account already
 // 5 - if user exist, connect
 // 6 - if user doesnt exist, register him
-Router.post('/login/facebook', function(req, res, next) {
+Router.post('/user/login/facebook', function(req, res, next) {
     if (req.body.profile_id && req.body.access_token) { // 1
         FB.api('me', { // 2
             fields: ['id', 'email', 'gender', 'first_name', 'last_name'],
@@ -40,7 +40,7 @@ Router.post('/login/facebook', function(req, res, next) {
 // route for logout
 // 1 - delete token with mongo request
 // 2 - send ok
-Router.get('/logout', needAuth, function(req, res) {
+Router.get('/user/logout', needAuth, function(req, res) {
     req.auth.user.update({
         $pull: {
             auth_tokens: {
@@ -54,6 +54,32 @@ Router.get('/logout', needAuth, function(req, res) {
             message: 'ok'
         });
     })
+});
+
+Router.get('/user/me', needAuth, function(req, res) {
+    var user = req.auth.user;
+
+    res.json({
+        last_name: user.last_name,
+        first_name: user.first_name,
+        gender: user.gender,
+        email: user.email,
+        favorites: user.favorites
+    });
+});
+
+Router.delete('/user', needAuth, function(req, res) {
+    UserModel.remove({
+        _id: req.auth.user._id
+    }, function(err) {
+        if (err) {
+            console.error(err);
+            return (res.errorApi(500, 'Database error'));
+        }
+        res.json({
+            message: 'ok'
+        })
+    });
 });
 
 // get user document

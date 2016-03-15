@@ -4,11 +4,12 @@ API for spectacle !
 ## How it works
 First you have to login with your facebook account. Then you will have access to all endpoints that you might need with your id and token.
 
-## endpoints
+
+## Endpoints
 
 #### POST /user/login/facebook
 
-Login via Facebook. You need to send a facebook access_token and your facebook user id
+Login via Facebook. You need to send a facebook access_token and your facebook user id.
 
 ###### HTTP POST PARAMS
 ```json
@@ -27,6 +28,7 @@ Login via Facebook. You need to send a facebook access_token and your facebook u
   "token": "your spectacle access token"
 }
 ```
+All your authentificated request need to send the id as user and token as password via HTTP Basic Auth.
    
 400 -> Bad request
 ```json

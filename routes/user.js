@@ -37,6 +37,19 @@ Router.post('/user/login/facebook', function(req, res, next) {
     }
 });
 
+// route to get user data
+Router.get('/user/me', needAuth, function(req, res) {
+    var user = req.auth.user;
+
+    res.json({
+        last_name: user.last_name,
+        first_name: user.first_name,
+        gender: user.gender,
+        email: user.email,
+        favorites: user.favorites
+    });
+});
+
 // route for logout
 // 1 - delete token with mongo request
 // 2 - send ok
@@ -56,18 +69,7 @@ Router.get('/user/logout', needAuth, function(req, res) {
     })
 });
 
-Router.get('/user/me', needAuth, function(req, res) {
-    var user = req.auth.user;
-
-    res.json({
-        last_name: user.last_name,
-        first_name: user.first_name,
-        gender: user.gender,
-        email: user.email,
-        favorites: user.favorites
-    });
-});
-
+// route to delete account
 Router.delete('/user', needAuth, function(req, res) {
     UserModel.remove({
         _id: req.auth.user._id

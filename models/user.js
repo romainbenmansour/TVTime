@@ -16,7 +16,11 @@ var UserSchema = mongoose.Schema({
             default: Date.now
         }
     }],
-    favorites: [Number]
+    favorites: [Number],
+    params: [{
+        key: String,
+        value: String
+    }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

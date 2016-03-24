@@ -71,10 +71,44 @@ Delete server side authentification token
 
 Delete user account
 
+#### GET /user/params
+
+Get user params
+
 ###### HTTP RESPONSES
 
-200 -> Everything is great   
+200 -> Everything is great
+```json
+[
+    {
+        "key": "name_of_the_key",
+        "value": "value_of_the_key"
+    }
+]
+```
 401 -> Need authentication
+
+#### POST /user/params
+
+Add and get user params
+
+###### HTTP PARAMETERS
+
+All POST variables sent to this endpoint will be saved as user parameters.
+
+###### HTTP RESPONSES
+
+200 -> Everything is great
+```json
+[
+    {
+        "key": "name_of_the_key",
+        "value": "value_of_the_key"
+    }
+]
+```
+401 -> Need authentication
+
 
 ### Tests
 Incoming bro

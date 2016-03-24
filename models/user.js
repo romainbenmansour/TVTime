@@ -16,7 +16,11 @@ var UserSchema = mongoose.Schema({
             default: Date.now
         }
     }],
-    favorites: [Number],
+    favorites: [{
+        type: Number,
+        ref: 'Show',
+        index: '2d'
+    }],
     params: [{
         key: String,
         value: String

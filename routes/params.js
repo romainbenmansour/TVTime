@@ -4,13 +4,20 @@ var Router = require('express').Router(),
 var needAuth = require('../helper/needAuth'),
     UserModel = require('../models/user');
 
+// get all params
+Router.get('/user/params', needAuth, function(req, res) {
+    res.json(req.auth.user.params);
+});
+
 // set new params
 //
 Router.post('/user/params', needAuth, function(req, res) {
     var newParams = createParamsArray(req.body);
 
     for (var i = 0; i < newParams.length; i++) {
-        var elem = _.find(req.auth.user.params, {'key': newParams[i].key});
+        var elem = _.find(req.auth.user.params, {
+            'key': newParams[i].key
+        });
 
         if (elem)
             elem.value = newParams[i].value;
@@ -26,11 +33,6 @@ Router.post('/user/params', needAuth, function(req, res) {
         res.json(req.auth.user.params);
     });
 });
-
-Router.get('/user/params', needAuth, function(req, res) {
-    res.json(req.auth.user.params);
-});
-
 
 // create new params collection out of request
 function createParamsArray(reqBody) {

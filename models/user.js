@@ -24,7 +24,8 @@ var UserSchema = mongoose.Schema({
     params: [{
         key: String,
         value: String
-    }]
+    }],
+    devices: [String]
 });
 
 module.exports = mongoose.model('User', UserSchema);
